@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import datetime
 import inspect
 import os
@@ -19,7 +21,7 @@ import psutil
 import GPUtil
 
 file_dir = os.path.dirname(inspect.getframeinfo(inspect.currentframe()).filename)
-process = psutil.Process(os.getpid()) #获取当前进程
+process = psutil.Process(os.getpid()) 
 
 
 
