@@ -225,6 +225,7 @@ def init_distributed_mode(args):
 
     os.environ['MASTER_ADDR'] = master_addr
     os.environ['MASTER_PORT'] = master_port
+    os.environ['NCCL_DEBUG'] = 'INFO'
 
     print(f"MASTER_ADDR: {master_addr}")
     print(f"MASTER_PORT: {master_port}")
