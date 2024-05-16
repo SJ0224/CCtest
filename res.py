@@ -222,6 +222,7 @@ def monitor_system_usage():
 def init_distributed_mode(args):
     os.environ['MASTER_ADDR'] = args.init_method.split('://')[1].split(':')[0]
     os.environ['MASTER_PORT'] = args.init_method.split(':')[-1]
+    print("fine")
     dist.init_process_group(backend='nccl', init_method=args.init_method, world_size=args.world_size, rank=args.rank)
     print("nice")
 
