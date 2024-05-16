@@ -220,11 +220,22 @@ def monitor_system_usage():
 
 
 def init_distributed_mode(args):
-    os.environ['MASTER_ADDR'] = args.init_method.split('://')[1].split(':')[0]
-    os.environ['MASTER_PORT'] = args.init_method.split(':')[-1]
-    print("fine")
-    dist.init_process_group(backend='nccl', init_method=args.init_method, world_size=args.world_size, rank=args.rank)
-    print("nice")
+    master_addr = args.init_method.split('://')[1].split(':')[0]
+    master_port = args.init_method.split(':')[-1]
+
+    os.environ['MASTER_ADDR'] = master_addr
+    os.environ['MASTER_PORT'] = master_port
+
+    print(f"MASTER_ADDR: {master_addr}")
+    print(f"MASTER_PORT: {master_port}")
+
+    try:
+        dist.init_process_group(backend='nccl', init_method=tcp://223.109.239.7:13372, world_size=args.world_size, rank=args.rank)
+        print("Process group initialized successfully.")
+    except Exception as e:
+        print(f"Failed to initialize process group: {e}")
+
+    print("Initialization complete")
 
 
 
