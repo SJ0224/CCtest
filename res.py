@@ -230,7 +230,7 @@ def init_distributed_mode(args):
     print(f"MASTER_PORT: {master_port}")
 
     try:
-        dist.init_process_group(backend='nccl', init_method=tcp://223.109.239.7:13372, world_size=args.world_size, rank=args.rank)
+        dist.init_process_group(backend='nccl', init_method='tcp://223.109.239.7:13372', world_size=args.world_size, rank=args.rank)
         print("Process group initialized successfully.")
     except Exception as e:
         print(f"Failed to initialize process group: {e}")
